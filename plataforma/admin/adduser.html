@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Usuarios</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+
+    <link rel="stylesheet" href="../css/login.css">
+
+    <!-- Importar o SDK do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
+
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <!--FIM NAV-->
+        <div class="title">
+            <h1>Connect Work</h1>
+        </div>
+
+        <div class="central">
+            <div class="card">
+
+                <h1>Adicionar Usuarios</h1>
+                <form id="my-form">
+                    <div class="input-field">
+                        <label for="nome">Usuario:</label><br>
+                        <datalist id="usuarioslist"></datalist>
+                        <input type="text" autocomplete="off" placeholder="Usuario" list="usuarioslist" id="usuarios" name="nome" required>
+
+                    </div>
+
+                    <div class="input-field">
+                        <label for="nome">Grupo:</label><br>
+                        <datalist id="gruposlist"></datalist>
+                        <input type="text" autocomplete="off" placeholder="Nome do grupo" list="gruposlist" id="grupos" name="nome" required>
+
+                    </div>
+
+
+
+
+                    <button class="btn " type="submit" name="action">Adicionar </button><br>
+
+                </form>
+                <button class="back " onclick="menu()" type="submit" name="">Voltar</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./adduser.js"></script>
+<script>
+    function menu() {
+        location.href = './index.html'
+    }
+</script>
+
+</html>
