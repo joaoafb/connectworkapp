@@ -36,7 +36,7 @@ function pegarempresa() {
     }, 1000);
 }
 
-function adminfunc() {
+
    db.collection('admin').where("email", "==", localStorage.getItem("email"))
         .get()
         .then((querySnapshot) => {
@@ -47,8 +47,8 @@ function adminfunc() {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-}
-adminfunc()
+
+
 
 
 function home() {
