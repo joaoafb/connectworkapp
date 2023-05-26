@@ -1,5 +1,5 @@
 function load() {
-    adminfunc()
+  
     pegarempresa()
     if (localStorage.getItem("nome") == null) {
         Swal.fire({
@@ -48,6 +48,7 @@ function adminfunc() {
             console.log("Error getting documents: ", error);
         });
 }
+adminfunc()
 
 
 function home() {
