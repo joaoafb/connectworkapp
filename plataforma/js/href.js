@@ -92,7 +92,17 @@ function usuario() {
 
 
 function admin() {
-    location.href = './admin'
+ db.collection('admin').where("email", "==", localStorage.getItem("email"))
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                 location.href = './admin'
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+
 
 }
 
