@@ -37,7 +37,7 @@ function pegarempresa() {
 }
 
 function adminfunc() {
-    db.collection('usuarios').where("email", "==", localStorage.getItem("email")).where("admin", "==", 'sim')
+   db.collection('admin').where("email", "==", localStorage.getItem("email"))
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
