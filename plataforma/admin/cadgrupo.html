@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Grupo</title>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-storage.js"></script>
+
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta.3/css/materialize.min.css">
+    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
+
+</head>
+
+<body>
+
+    <!--FIM NAV-->
+    <div style="margin: 0 auto; width: 500px;">
+
+        <div class="contatos" style="margin: 0 auto;">
+            <div class="title">
+                <h1>Connect Work</h1>
+
+            </div>
+
+            <form class="central">
+
+                <div class="input-field">
+                    <label for="nomeGrupo">Nome do Grupo</label>
+                    <input autocomplete="off" required id="nomeGrupo" placeholder="Somente Letras" type="text">
+
+
+
+                </div>
+
+                <div class="input-field">
+                    <label for="empresa">Empresa</label>
+                    <input disabled autocomplete="off" required id="empresa" type="text">
+                </div>
+
+
+
+
+                <div class="input-field">
+                    <span>Imagem do Grupo</span>
+                    <input type="file" name="" class="file" id="imagemgrupo">
+                </div>
+
+
+
+
+                <div>
+                    <button type="button" class="back" onclick="criarGrupo()">Criar Grupo</button>
+                </div>
+
+            </form><br>
+            <button class="back" onclick="menu()" type="submit" name="">Voltar</button>
+        </div>
+    </div>
+    <script>
+        function menu() {
+            location.href = './index.html'
+        }
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="cadgrupo.js"></script>
+</body>
+<script>
+    document.querySelector("#empresa").value = localStorage.getItem("empresa")
+</script>
+
+</html>
