@@ -331,6 +331,28 @@ canvas {
     margin-top: 20px !important;
 }
 
+.swal2-popup {
+    border-radius: 20px !important;
+}
+
+.notific {
+    border: none;
+    outline: none;
+    background-color: #7C5CFC !important;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-align: left;
+}
+
+.close-button {
+    text-align: right;
+    background-color: #7b24c8;
+    padding: 5px;
+    font-size: 20pt;
+    float: right;
+}
+
 .swal-modal-close-button {
     color: #999 !important;
     font-size: 18px !important;
@@ -808,7 +830,24 @@ tr>td:first-child {
     margin-right: 8px;
 }
 
+.collection .collection-item {
+    margin: 0;
+    padding-left: 20px;
+    padding: 10px;
+    min-height: 54px !important;
+    display: flex;
+    align-items: center;
+}
+
+.collection .collection-item:hover {
+    background-color: #7C5CFC;
+    color: white;
+}
+
 @media (max-width: 1300px) {
+    table tr {
+        margin-bottom: 10px;
+    }
     .bottom-container {
         flex-direction: column;
         height: auto;
@@ -817,8 +856,41 @@ tr>td:first-child {
     .bottom-container__right {
         width: 100%;
     }
+    .boxchat {
+        width: 100%;
+    }
+    #chat-form {
+        padding: 10px;
+        margin: 0 auto;
+    }
     .btn {
         width: 45%;
+    }
+    .sidebarcss {
+        display: none;
+    }
+    .contatos {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .collection .collection-item {
+        margin: 0;
+        padding: 10px;
+        min-height: 54px !important;
+        display: flex;
+        align-items: center;
+    }
+    .collection .collection-item:hover {
+        background-color: #7C5CFC;
+        color: white;
+    }
+    .collection-item {
+        padding: 5px;
+    }
+    .collection .collection-item.avatar {
+        min-height: 20px;
+        height: 20px;
+        padding: 5px;
     }
 }
 

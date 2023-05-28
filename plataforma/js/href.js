@@ -1,5 +1,12 @@
+// Inicializar o menu mobile usando o Materialize
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+});
+
+
 function load() {
-  
+
     pegarempresa()
     if (localStorage.getItem("nome") == null) {
         Swal.fire({
@@ -37,16 +44,16 @@ function pegarempresa() {
 }
 
 
-   db.collection('admin').where("email", "==", localStorage.getItem("email"))
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                document.getElementById("admin").style.display = 'flex'
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
+db.collection('admin').where("email", "==", localStorage.getItem("email"))
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            document.getElementById("admin").style.display = 'flex'
         });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
 
 
 
@@ -92,11 +99,11 @@ function usuario() {
 
 
 function admin() {
- db.collection('admin').where("email", "==", localStorage.getItem("email"))
+    db.collection('admin').where("email", "==", localStorage.getItem("email"))
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                 location.href = './admin'
+                location.href = './admin'
             });
         })
         .catch((error) => {

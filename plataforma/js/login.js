@@ -82,7 +82,7 @@ document.getElementById("form-login").addEventListener("submit", function(event)
                 text: 'Seja Bem-Vindo Novamente.',
                 footer: '',
                 showConfirmButton: false,
-
+                showCancelButton: false,
             })
             setTimeout(() => {
                 location.href = './index.html'
@@ -101,11 +101,22 @@ document.getElementById("form-login").addEventListener("submit", function(event)
 
 
 
-                Swal.fire(
-                    'Algo deu errado...',
-                    'Sua Senha Esta Incorreta!',
-                    'error'
-                )
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Sua senha está incorreta!',
+                    icon: 'error',
+                    customClass: {
+                        popup: 'my-custom-popup',
+                        title: 'my-custom-title',
+                        content: 'my-custom-content',
+                        confirmButton: 'my-custom-confirm-button'
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Fechar'
+                });
+
+
 
 
 
@@ -113,12 +124,21 @@ document.getElementById("form-login").addEventListener("submit", function(event)
             } else if (errorCode === 'auth/user-not-found') {
                 console.log("Usuário não encontrado. Verifique seu e-mail e tente novamente.")
 
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Usuário não encontrado. Verifique seu e-mail e tente novamente',
+                    icon: 'error',
+                    customClass: {
+                        popup: 'my-custom-popup',
+                        title: 'my-custom-title',
+                        content: 'my-custom-content',
+                        confirmButton: 'my-custom-confirm-button'
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Fechar'
+                });
 
-                Swal.fire(
-                    'Algo deu errado...',
-                    'Usuário não encontrado. Verifique seu e-mail e tente novamente.',
-                    'error'
-                )
 
 
             } else {

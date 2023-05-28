@@ -33,6 +33,7 @@ function informacoes() {
                 document.getElementById("setor").value = doc.data().setor;
                 document.getElementById("nome").value = doc.data().nome
                 document.getElementById("email").value = doc.data().email
+                document.getElementById("recado").value = doc.data().descricao
                 localStorage.setItem("idusuario", doc.id)
 
 

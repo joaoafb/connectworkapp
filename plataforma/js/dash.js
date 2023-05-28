@@ -30,7 +30,7 @@ const usuarios = firebase.firestore().collection(localStorage.getItem("empresa")
 usuarios.get().then((querySnapshot) => {
     const usuarioscount = querySnapshot.size;
 
-    if (usuarioscount == 2) { document.querySelector("#quantidadeusuarios").innerHTML = usuarioscount - Number(1) + ' AmigGrupo' } else { document.querySelector("#quantidadeusuarios").innerHTML = usuarioscount - Number(1) + ' Amigos' }
+    if (usuarioscount == 2) { document.querySelector("#quantidadeusuarios").innerHTML = usuarioscount - Number(1) + ' AmigGrupo' } else { document.querySelector("#quantidadeusuarios").innerHTML = usuarioscount - Number(1) + ' Amigos <i class="fas fa-user-friends"></i>' }
 
 
 }).catch((error) => {
@@ -51,7 +51,7 @@ const foldersRef = firebase.firestore().collection(localStorage.getItem("empresa
 // Obtenha a quantidade de pastas
 foldersRef.get().then((querySnapshot) => {
     const folderCount = querySnapshot.size;
-    if (folderCount == 1) { document.querySelector("#quantidadegrupos").innerHTML = folderCount + ' Grupo' } else { document.querySelector("#quantidadegrupos").innerHTML = folderCount + ' Grupos' }
+    if (folderCount == 1) { document.querySelector("#quantidadegrupos").innerHTML = folderCount + ' Grupo' } else { document.querySelector("#quantidadegrupos").innerHTML = folderCount + ' Grupos <i class="fas fa-users"></i>' }
 
 }).catch((error) => {
     console.error('Erro ao obter as pastas:', error);
@@ -80,7 +80,7 @@ firebase.firestore().collection(localStorage.getItem("empresa") + 'tarefas')
     .then((querySnapshot) => {
         const documentCount = querySnapshot.size;
         localStorage.setItem("realizada", documentCount)
-        document.querySelector("#realizada").innerHTML = 'Realizadas: ' + documentCount
+        document.querySelector("#realizada").innerHTML = '<i class="fas fa-check"></i> ' + documentCount
     })
     .catch((error) => {
         console.error('Erro ao obter os documentos:', error);
@@ -95,7 +95,7 @@ firebase.firestore().collection(localStorage.getItem("empresa") + 'tarefas')
 
         const documentCount = querySnapshot.size;
         localStorage.setItem("pendente", documentCount)
-        document.querySelector("#pendente").innerHTML = 'Pendentes: ' + documentCount
+        document.querySelector("#pendente").innerHTML = '<i class="fas fa-clock"></i> ' + documentCount
     })
     .catch((error) => {
         console.error('Erro ao obter os documentos:', error);
@@ -110,7 +110,7 @@ firebase.firestore().collection(localStorage.getItem("empresa") + 'tarefas')
 
         const documentCount = querySnapshot.size;
         localStorage.setItem("analise", documentCount)
-        document.querySelector("#analise").innerHTML = 'Análise: ' + documentCount
+        document.querySelector("#analise").innerHTML = '<i class="fas fa-eye"></i>' + documentCount
     })
     .catch((error) => {
         console.error('Erro ao obter os documentos:', error);
@@ -202,7 +202,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
             td4.innerText = data.status
 
             const button = document.createElement('button');
-            button.innerText = 'Já Realizei';
+            button.innerHTML = '<i class="fas fa-check icon"></i>';
             button.className = 'btnrealizada'
 
             //BTN REALIARF
@@ -293,7 +293,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
             }
 
             const button2 = document.createElement('button');
-            button2.innerText = 'Pendente';
+            button2.innerHTML = '<i class="far fa-clock"></i>'
             button2.className = 'btnpendente'
 
             button2.onclick = function() {

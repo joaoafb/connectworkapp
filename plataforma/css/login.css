@@ -10,6 +10,10 @@
     --button-font-color: #ffffff;
 }
 
+.swal2-popup {
+    border-radius: 20px !important;
+}
+
 .toast {
     position: absolute;
     top: 25px;

@@ -16,6 +16,48 @@ const db = firebase.firestore();
 // FIM AUTH FIREBASE
 //PROCURAR E EXIBIR GRUPOS EM QUE O LOCALSTOREGE.EMAIL PARTICIPA
 //PEGAR EMPRESAS
+// Função assíncrona para verificar a existência do documento
+async function verificarDocumento() {
+    try {
+        const querySnapshot = await db.collection(localStorage.getItem("empresa") + 'alerta').where('para', '==', localStorage.getItem("email")).get();
+
+        if (!querySnapshot.empty) {
+            const doc = querySnapshot.docs[0];
+
+            Swal.fire({
+                title: 'Notificação',
+                html: `<div class="notific">
+              <h4>${doc.data().titulo}</h4>
+              <p>${doc.data().descricao}</p>
+              <p>Por: ${doc.data().por}</p>
+            </div>`,
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+                focusConfirm: false,
+                confirmButtonText: 'Fechar'
+            });
+
+            // Adicionar evento de clique à classe "notific"
+            const notificElement = document.querySelector('.notific');
+            notificElement.addEventListener('click', async() => {
+                try {
+                    await doc.ref.delete(); // Excluir o documento no banco de dados
+                    console.log('Documento excluído com sucesso!');
+                } catch (error) {
+                    console.error('Erro ao excluir o documento:', error);
+                }
+            });
+        } else {
+            // Caso o documento não exista, faça algo aqui
+        }
+    } catch (error) {
+        console.error('Erro ao verificar o documento:', error);
+    }
+}
+
+// Chamar a função para verificar o documento
+verificarDocumento();
 
 
 db.collection(localStorage.getItem("empresa") + 'usuarios').get().then((querySnapshot) => {
