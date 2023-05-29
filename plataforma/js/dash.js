@@ -217,7 +217,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
                 swalWithBootstrapButtons.fire({
                     title: 'Deseja Alterar o Status Para Pendente?',
-                    text: "Essa ação e inrreversivel!",
+                    text: "",
                     icon: 'warning',
                     input: 'text',
                     inputAttributes: {
@@ -308,7 +308,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
                 swalWithBootstrapButtons.fire({
                     title: 'Deseja Alterar o Status Para Pendente?',
-                    text: "Essa ação e inrreversivel!",
+                    text: "",
                     icon: 'warning',
                     input: 'text',
                     inputAttributes: {

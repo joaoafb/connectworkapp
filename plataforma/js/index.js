@@ -89,130 +89,12 @@ db.collection(localStorage.getItem("empresa") + 'usuarios').get().then((querySna
         var i2 = document.createElement("i");
         i2.classList.add("material-icons", "iconroxo");
         i2.textContent = "chat";
+
         li.onclick = function() {
-
-            document.querySelector("#chat-form").style.display = 'flex'
-
-            const messageRef = firebase.database().ref(localStorage.getItem("empresa") + doc.data().nome + localStorage.getItem("nome"));
-            messageRef.on("value", (snapshot) => {
-                const messageList = document.querySelector("#message-list");
-                messageList.innerHTML = '';
-
-                snapshot.forEach((childSnapshot) => {
-                    const data = childSnapshot.val();
-
-                    // Criação dos elementos
-                    const div = document.createElement("div");
-                    div.classList.add("message");
-
-                    const spanSender = document.createElement("span");
-                    spanSender.classList.add("sender");
-                    spanSender.textContent = data.por;
-
-                    const divContent = document.createElement("div");
-                    divContent.classList.add("content");
-
-
-                    if (data.mensagem.startsWith("http://") || data.mensagem.startsWith("https://")) {
-
-                        const spanMessageText = document.createElement("span");
-                        spanMessageText.innerHTML = '<i class="fa-solid fa-file"></i> CLICAR PARA ABRIR'
-
-                        spanMessageText.className = 'imgmsg'
-                        spanMessageText.style.cursor = 'pointer'
-
-                        spanMessageText.onclick = function() {
-                            window.open(data.mensagem, '_blank');
-
-                        }
-                        divContent.appendChild(spanMessageText);
-                        setTimeout(() => {
-                            scrollToEnd(div);
-                        }, 100);
-                    } else {
-                        const spanMessageText = document.createElement("span");
-                        spanMessageText.classList.add("message-text");
-                        spanMessageText.textContent = data.mensagem;
-                        divContent.appendChild(spanMessageText);
-                        setInterval(() => {
-                            setTimeout(() => {
-                                scrollToEnd(div);
-                            }, 100);
-                        }, 100);
-                    }
-
-
-
-                    const spanTime = document.createElement("span");
-                    spanTime.classList.add("time");
-                    spanTime.textContent = data.timestamp;
-
-                    if (data.por === localStorage.getItem("nome")) {
-                        spanSender.classList.add("sender");
-                        divContent.className = "mymsg chat-bubble chat-end"
-                        spanSender.textContent = '';
-                        spanTime.classList.add("my");
-                    }
-
-
-
-                    // Anexando os elementos
-                    div.appendChild(spanSender);
-
-                    div.appendChild(divContent);
-                    div.appendChild(spanTime);
-
-                    messageList.appendChild(div);
-                    setTimeout(() => {
-                        scrollToEnd(messageList);
-                    }, 100);
-                });
-            });
-
-
-            //enviar msg
-            const chatForm = document.querySelector('#chat-form')
-            chatForm.addEventListener("submit", (e) => {
-
-                e.preventDefault();
-
-                // Capturar a mensagem do usuário
-                const messageInput = document.querySelector("#message-input");
-                const message = messageInput.value;
-                const localTime = new Date();
-
-                // Verificar se a mensagem está vazia
-                if (message == '') {
-                    console.log("Digite algo");
-                } else {
-                    // Formatar o horário como uma string "22:22"
-                    const horario = localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-                    // Referência para o Realtime Database
-                    const databaseRef = database.ref(localStorage.getItem("empresa") + doc.data().nome + localStorage.getItem("nome"));
-
-                    // Enviar a mensagem para o destinatário
-                    const messageData = {
-                        mensagem: message,
-                        timestamp: horario,
-                        por: localStorage.getItem("nome"),
-                        empresa: localStorage.getItem("empresa"),
-                        para: doc.data().nome
-                    };
-
-                    databaseRef.push().set(messageData);
-
-                    // Enviar uma cópia da mensagem para o remetente
-                    const senderRef = database.ref(localStorage.getItem("empresa") + localStorage.getItem("nome") + doc.data().nome);
-                    senderRef.push().set(messageData);
-                }
-
-                // Enviar a mensagem para o Realtime Database
-
-                // Limpar o campo de entrada de texto após o envio da mensagem
-                messageInput.value = "";
-
-            });
+            document.querySelectorAll('.text-2xl').item(1).innerHTML = doc.data().nome
+            setTimeout(() => {
+                enviarmsg(document.querySelectorAll("h4").item(1).textContent)
+            }, 100);
 
         }
 
@@ -351,5 +233,140 @@ function stopmic() {
             .catch(function(error) {
                 console.log('Erro ao enviar o áudio para o Firebase Storage: ', error);
             });
+    });
+}
+
+
+function enviarmsg(nome) {
+
+
+
+
+
+
+    document.querySelector("#chat-form").style.display = 'flex'
+
+    const messageRef = firebase.database().ref(localStorage.getItem("empresa") + document.querySelectorAll("h4").item(1).textContent + localStorage.getItem("nome"));
+    messageRef.on("value", (snapshot) => {
+
+        const messageList = document.querySelector("#message-list");
+        messageList.innerHTML = '';
+
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+
+            // Criação dos elementos
+            const div = document.createElement("div");
+            div.classList.add("message");
+
+            const spanSender = document.createElement("span");
+            spanSender.classList.add("sender");
+            spanSender.textContent = data.por;
+
+            const divContent = document.createElement("div");
+            divContent.classList.add("content");
+
+
+            if (data.mensagem.startsWith("http://") || data.mensagem.startsWith("https://")) {
+
+                const spanMessageText = document.createElement("span");
+                spanMessageText.innerHTML = '<i class="fa-solid fa-file"></i> CLICAR PARA ABRIR'
+
+                spanMessageText.className = 'imgmsg'
+                spanMessageText.style.cursor = 'pointer'
+
+                spanMessageText.onclick = function() {
+                    window.open(data.mensagem, '_blank');
+
+                }
+                divContent.appendChild(spanMessageText);
+                setTimeout(() => {
+                    scrollToEnd(div);
+                }, 100);
+            } else {
+                const spanMessageText = document.createElement("span");
+                spanMessageText.classList.add("message-text");
+                spanMessageText.textContent = data.mensagem;
+                divContent.appendChild(spanMessageText);
+                setInterval(() => {
+                    setTimeout(() => {
+                        scrollToEnd(div);
+                    }, 100);
+                }, 100);
+            }
+
+
+
+            const spanTime = document.createElement("span");
+            spanTime.classList.add("time");
+            spanTime.textContent = data.timestamp;
+
+            if (data.por === localStorage.getItem("nome")) {
+                spanSender.classList.add("sender");
+                divContent.className = "mymsg chat-bubble chat-end"
+                spanSender.textContent = '';
+                spanTime.classList.add("my");
+            }
+
+
+
+            // Anexando os elementos
+            div.appendChild(spanSender);
+
+            div.appendChild(divContent);
+            div.appendChild(spanTime);
+
+            messageList.appendChild(div);
+            setTimeout(() => {
+                scrollToEnd(messageList);
+            }, 100);
+        });
+    });
+
+
+    //enviar msg
+    const chatForm = document.querySelector('#chat-form')
+    chatForm.addEventListener("submit", (e) => {
+
+
+        e.preventDefault();
+
+        // Capturar a mensagem do usuário
+        const messageInput = document.querySelector("#message-input");
+        const message = messageInput.value;
+        const localTime = new Date();
+
+        // Verificar se a mensagem está vazia
+        if (message == '') {
+            console.log("Digite algo");
+        } else {
+            // Formatar o horário como uma string "22:22"
+            const horario = localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Referência para o Realtime Database
+            const databaseRef = database.ref(localStorage.getItem("empresa") + document.querySelectorAll("h4").item(1).textContent + localStorage.getItem("nome"));
+
+            // Enviar a mensagem para o destinatário
+            const messageData = {
+                mensagem: message,
+                timestamp: horario,
+                por: localStorage.getItem("nome"),
+                empresa: localStorage.getItem("empresa"),
+                para: document.querySelectorAll("h4").item(1).textContent
+            };
+
+            databaseRef.push().set(messageData);
+
+            // Enviar uma cópia da mensagem para o remetente
+            const senderRef = database.ref(localStorage.getItem("empresa") + localStorage.getItem("nome") + document.querySelectorAll("h4").item(1).textContent);
+            senderRef.push().set(messageData);
+
+        }
+
+        // Enviar a mensagem para o Realtime Database
+
+        // Limpar o campo de entrada de texto após o envio da mensagem
+        messageInput.value = "";
+
     });
 }

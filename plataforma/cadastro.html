@@ -5,114 +5,43 @@
     <meta charset="UTF-8">
     <title>Cadastro</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <link rel="stylesheet" href="./css/login.css">
     <link rel="shortcut icon" type="image/x-icon" href="./img/LOGO SEM TEXTO.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.0.0/magic.min.css">
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+    <script defer src="https://kit.fontawesome.com/1b780029f6.js" crossorigin="anonymous"></script>
+    <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.0.0/magic.min.css" />
-    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
-    <script src="https://kit.fontawesome.com/1b780029f6.js" crossorigin="anonymous"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <body onload="cadastro();load()">
+    <body onload="cadastro(),load()">
         <div class="box">
-            <h1 class="ui header">Cadastro de Usuário</h1>
-            <br>
+            <h1 class="ui header">Cadastro de Usuário</h1><br>
             <form id="form-cadastro" class="ui form">
-                <div class="field">
-                    <label for="nome">Nome :</label>
-                    <input type="text" id="nome" autocomplete="off" placeholder="Qual Seu Nome?" required>
-                </div> <br>
-                <div class="field">
-                    <datalist id="listempresas"></datalist>
-                    <label for="nome">Empresa:</label>
-                    <input type="text" autocomplete="off" disabled list="listempresas" id="empresa" placeholder="Em Qual Empresa Você Trabalha?" required>
-                </div><br>
-                <div class="field">
-                    <label for="nome">Usuario:</label>
-                    <input type="text" id="usuario" autocomplete="off" placeholder="Qual Será Seu Usuario?" required>
-                    <label style="display: none;" for="usuario" id="alertuser">Esse Usuario Já Existe!</label>
-                </div>
-
-                <br>
-                <div class="field">
-                    <label for="nome">Contato:</label>
-                    <input type="tel" id="contato" autocomplete="off" placeholder="Me Informa Um Telefone Para Contato?" pattern="[0-9]{10,11}" required>
-                </div>
-
-                <br>
-                <div class="field">
-                    <label for="email">Email:</label>
-                    <input type="email" placeholder="Qual Seu Email?" id="email" required>
-                </div>
-                <br>
-                <div class="field">
-                    <label for="senha">Senha:</label>
-                    <input type="password" autocomplete="off" placeholder="Shiuuu! Qual Sua Senha?" id="senha" required>
-
-                    <label for="senha">No mínimo 6 caracteres</label>
-                </div>
-                <br>
-                <br>
-                <div class="field">
-                    <label for="senha">Senha Novamente:</label>
-                    <input type="password" autocomplete="off" placeholder="Ei! Digita Sua Senha Novamente?" id="resenha" required><br>
-                    <label style="display:none;color:red;" for="resenha" id="resenhalabel">Essa Senha Esta Diferente Da Primeira Informada.</label>
-                </div>
-
-                <br><br>
-
-                <br>
-                <div class="field">
-                    <label for="nome">Cargo:</label>
-                    <input type="text" autocomplete="off" id="cargo" placeholder="Qual Seu Cargo Na Empresa?" required>
-                </div>
-                <br>
-                <div class="field">
-                    <label for="nome">Setor:</label>
-                    <input type="text" autocomplete="off" id="setor" placeholder="Em Qual Setor Você Trabalha?" required>
-                </div>
-                <br>
-
-                <br>
-                <div class="field">
-                    <label for="nome">Biografia:</label>
-
-                    <textarea id="descricao" autocomplete="off" placeholder="Me diga um pouco sobre você" required></textarea>
-                </div>
-                <br><br><br>
-                <div class="field">
-                    <label for="nome">Habilidades Principais (Separe as habilidade por vírgula)</label>
-
-                    <input type="text" autocomplete="off" id="skills" name="skills" required>
-                </div>
-                <br>
-                <div class="field">
-                    <label for="nome">Habilidades Secundarias (Separe as habilidade por vírgula)</label>
-
-                    <input type="text" autocomplete="off" id="skillstwo" name="skills">
-                </div>
-                <br>
-
-                <div class="field">
-                    <button class="ui button primary" type="submit" name="action">Criar Conta</button>
-            </form>
-            <button onclick="location.href = 'login.html'" class="ui button" type="submit" name="action">Já tenho conta</button>
-            </div>
-        </div>
-
+                <div class="field"><label for="nome">Nome :</label><input type="text" id="nome" autocomplete="off" placeholder="Qual Seu Nome?" required></div><br>
+                <div class="field"><datalist id="listempresas"></datalist><label for="nome">Empresa:</label><input type="text" autocomplete="off" disabled="disabled" list="listempresas" id="empresa" placeholder="Em Qual Empresa Você Trabalha?" required></div><br>
+                <div class="field"><label for="nome">Usuario:</label><input type="text" id="usuario" autocomplete="off" placeholder="Qual Será Seu Usuario?" required><label style="display:none" for="usuario" id="alertuser">Esse Usuario Já Existe!</label></div><br>
+                <div class="field"><label for="nome">Contato:</label><input type="tel" id="contato" autocomplete="off" placeholder="Me Informa Um Telefone Para Contato?" pattern="[0-9]{10,11}" required></div><br>
+                <div class="field"><label for="email">Email:</label><input type="email" placeholder="Qual Seu Email?" id="email" required></div><br>
+                <div class="field"><label for="senha">Senha:</label><input type="password" autocomplete="off" placeholder="Shiuuu! Qual Sua Senha?" id="senha" required><label for="senha">No mínimo 6 caracteres</label></div><br><br>
+                <div class="field"><label for="senha">Senha Novamente:</label><input type="password" autocomplete="off" placeholder="Ei! Digita Sua Senha Novamente?" id="resenha" required><br><label style="display:none;color:red" for="resenha" id="resenhalabel">Essa Senha Esta Diferente Da Primeira Informada.</label></div><br><br><br>
+                <div class="field"><label for="nome">Cargo:</label><input type="text" autocomplete="off" id="cargo" placeholder="Qual Seu Cargo Na Empresa?" required></div><br>
+                <div class="field"><label for="nome">Setor:</label><input type="text" autocomplete="off" id="setor" placeholder="Em Qual Setor Você Trabalha?" required></div><br><br>
+                <div class="field"><label for="nome">Biografia:</label><textarea id="descricao" autocomplete="off" placeholder="Me diga um pouco sobre você" required></textarea></div><br><br><br>
+                <div class="field"><label for="nome">Habilidades Principais (Separe as habilidade por vírgula)</label><input type="text" autocomplete="off" id="skills" name="skills" required></div><br>
+                <div class="field"><label for="nome">Habilidades Secundarias (Separe as habilidade por vírgula)</label><input type="text" autocomplete="off" id="skillstwo" name="skills"></div><br>
+                <div class="field"><button class="ui button primary" type="submit" name="action">Criar Conta</button></form><button onclick='location.href="login.html"' class="ui button" type="submit" name="action">Já tenho conta</button></div>
     </body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
-    <script src="./js/cadastro.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script defer src="./js/cadastro.js"></script>
 
 </html>

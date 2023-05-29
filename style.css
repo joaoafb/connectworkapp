@@ -1,180 +1,167 @@
+.btn,
+.colortxt,
+.gradient-text {
+    -webkit-text-fill-color: transparent
+}
+
+.btn,
+.cta {
+    text-align: center
+}
+
+.cta h2,
+.cta p {
+    margin-bottom: 20px
+}
+
 * {
     margin: 0;
     padding: 0;
     user-select: none;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth
 }
 
 body {
-    overflow: scroll;
+    overflow: scroll
 }
 
 .loading {
-    overflow: auto;
+    overflow: auto
 }
 
-
-/* Classe para exibir a animação somente após um atraso de 2 segundos */
-
 body.loading h1 {
-    visibility: hidden;
+    visibility: hidden
 }
 
 body.loading h1.gradient-text {
     animation-delay: 2s;
-    visibility: visible;
+    visibility: visible
 }
 
 .gradient-text {
-    transition: 0.2s;
+    transition: .2s;
     background: linear-gradient(90deg, #2d96ec, #e503b3);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientAnimation 5s infinite !important;
+    animation: 5s infinite gradientAnimation!important
 }
 
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
+    0%,
+    100% {
+        background-position: 0 50%
     }
     50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
+        background-position: 100% 50%
     }
 }
 
 .gradient-back {
-    background: linear-gradient(90deg, #2d96ec, #e503b3) !important;
+    background: linear-gradient(90deg, #2d96ec, #e503b3)!important
 }
 
 .colortxt {
     background: linear-gradient(90deg, #2d96ec, #e503b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text
 }
 
 .logo {
-    transition: 0.2s;
-    width: 100px;
+    transition: .2s;
+    width: 100px
 }
 
 .logo:hover {
     width: 150px;
-    transition: 0.2s;
+    transition: .2s
 }
 
 .img {
     cursor: pointer;
     width: 300px;
-    border-radius: 10px;
+    border-radius: 10px
 }
 
 .bg-trans {
-    background-color: transparent !important;
+    background-color: transparent!important
+}
+
+.btn,
+.center {
+    background-color: #fff;
+    width: 100px;
+    display: flex;
+    height: 40px;
+    border-radius: 10px
 }
 
 body::-webkit-scrollbar {
     background: #e503b3;
     width: 7px;
-    border-radius: 5px;
+    border-radius: 5px
 }
 
 .header-wrapper {
-    border-radius: 10px;
+    border-radius: 10px
 }
 
 .center {
     margin-top: 12px;
-    display: flex;
     justify-content: center;
-    background-color: white;
     align-items: center;
-    height: 40px;
-    width: 100px;
-    border-radius: 10px;
-    margin-right: 25px;
+    margin-right: 25px
 }
 
 .btn {
-    background-color: white;
-    color: #e503b3 !important;
+    color: #e503b3!important;
     background: linear-gradient(90deg, #e503b3, #2d96ec);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: 100px;
-    text-align: center;
-    display: flex;
     font-size: 13pt;
     justify-content: center;
-    align-items: center;
-    height: 40px;
-    border-radius: 10px;
+    align-items: center
 }
 
 .pricing-tableiv {
-    border: 1px solid linear-gradient(90deg, #e503b3, #2d96ec);
+    border: 1px solid
 }
 
 .center:hover {
-    background-color: rgba(255, 255, 255, 0.906);
+    background-color: rgba(255, 255, 255, .906)
 }
 
-
-/* Estilizando a barra de rolagem */
-
-
-/* Estilizando o thumb (indicador de posição) */
-
 body::-webkit-scrollbar-thumb {
-    background-color: #2d96ec;
-    /* Cor do thumb */
+    background-color: #2d96ec
 }
 
 .cta {
     background-color: transparent;
     padding: 20px;
-    text-align: center;
-    color: white;
+    color: #fff
 }
 
 .cta h2 {
-    font-size: 45px;
-    margin-bottom: 20px;
+    font-size: 45px
 }
 
 .cta p {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 20px
 }
 
+.container button,
 .cta a {
-    background-color: white;
+    background-color: #fff;
     color: #2d96ec;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s
 }
 
 .cta a:hover {
     background-color: #2d96ec;
-    color: white;
+    color: #fff
 }
 
 .container {
     margin: 0 auto;
-    width: 80%;
-}
-
-.container button {
-    background-color: white;
-    color: #2d96ec;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    width: 80%
 }
