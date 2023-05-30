@@ -15,10 +15,12 @@
     <script defer src="https://unpkg.com/scrollreveal"></script>
     <script defer src="https://kit.fontawesome.com/1b780029f6.js" crossorigin="anonymous"></script>
     <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script defer src="https://unpkg.com/scrollreveal"></script>
     <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
     <script defer type="module" src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta.3/css/materialize.min.css">
@@ -55,10 +57,14 @@
             </div>
             <div class="bottom-container">
                 <div class="bottom-container__left">
+
+
                     <div class="box transaction-box" id="box1">
                         <div class="header-container">
                             <h3 class="section-header"><i class="fas fa-list"></i>Tarefas</h3>
-                        </div><progress id="myProgress" class="progress progress-primary w-full" value="0" max="100"></progress>
+                        </div><progress id="myProgress" class="progress w-full" value="0" max="100"></progress>
+
+
                         <table class="transaction-history" id="mostrartarefas"></table>
                     </div><br>
                     <div class="box transaction-box">
@@ -76,19 +82,19 @@
                 <div class="bottom-container__right">
                     <div class="box">
                         <div class="header-container">
-                            <h3 class="section-header"><i class="fas fa-sort-amount-down"></i>Você tem:</h3>
+                            <h3 class="section-header"><i class="fas fa-sort-amount-down icon"></i>Você tem:</h3>
                         </div>
                         <h1 class="price" style="font-size:13pt;padding:5px" id="quantidadeusuarios"></h1>
                     </div>
                     <div class="box">
                         <div class="header-container">
-                            <h3 class="section-header"><i class="fas fa-sort-amount-down"></i>Você esta em:</h3>
+                            <h3 class="section-header"><i class="fas fa-sort-amount-down icon"></i>Você esta em:</h3>
                         </div>
                         <h1 class="price" style="font-size:13pt;padding:5px" id="quantidadegrupos">0 grupos</h1>
                     </div>
                     <div class="box spending-box">
                         <div class="header-container">
-                            <h3 class="section-header"><i class="fas fa-chart-bar"></i>Estatistica Das Tarefas</h3>
+                            <h3 class="section-header"><i class="fas fa-chart-bar icon"></i>Estatistica Das Tarefas</h3>
                         </div>
                         <div class="pie-chart__labels">
                             <div class="pie-chart__labels-item infor" id="realizada"></div>
@@ -106,6 +112,16 @@
     const elementosBox = document.querySelectorAll('.box');
 
     elementosBox.forEach((elemento, index) => {
+        elemento.style.opacity = '0';
+        setTimeout(() => {
+            elemento.style.opacity = '1';
+        }, index * 1500); // Atraso progressivamente maior para cada elemento
+
+    });
+
+    const elementosBoxt = document.querySelectorAll('td');
+
+    elementosBoxt.forEach((elemento, index) => {
         elemento.style.opacity = '0';
         setTimeout(() => {
             elemento.style.opacity = '1';
@@ -134,6 +150,7 @@
         }
     }, 1000);
 </script>
+
 <script defer src="./js/href.js"></script>
 <script defer src="./js/dash.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

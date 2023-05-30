@@ -185,6 +185,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
 
+
             const tr = document.createElement('tr');
             const data = doc.data()
 
@@ -197,13 +198,22 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
             const td3 = document.createElement('td');
             td3.innerText = data.nome
+            if (data.status == 'realizada') {
+                tr.style.display = 'none'
+            }
+
 
             const td4 = document.createElement('td');
             td4.innerText = data.status
 
             const button = document.createElement('button');
             button.innerHTML = '<i class="fas fa-check icon"></i>';
-            button.className = 'btnrealizada'
+            button.className = 'btnrealizada waves-effect waves-light'
+
+            if (data.status == 'Análise') {
+                button.style.display = 'none'
+
+            }
 
             //BTN REALIARF
             button.onclick = function() {
@@ -237,35 +247,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
                             })
                             .then(() => {
-                                //add pontos
-                                if (data.nome > '') {
-                                    var documentoRef = db.collection(localStorage.getItem("empresa") + 'usuarios').doc(data.nome);
-                                } else {
-                                    var documentoRef = db.collection(localStorage.getItem("empresa") + 'usuarios').doc(data.grupo);
-                                }
 
-                                // Realiza a leitura do documento
-                                documentoRef.get().then(function(doc) {
-                                    if (doc.exists) {
-                                        var numeroSalvo = doc.data().pontos; // Número já salvo
-                                        var numeroEscolhido = 10; // Número escolhido
-
-                                        var novoNumero = numeroSalvo + numeroEscolhido;
-
-                                        // Atualiza o documento com o novo número
-                                        documentoRef.update({
-                                            pontos: novoNumero
-                                        }).then(function() {
-                                            console.log("Pontos Atualizados");
-                                        }).catch(function(error) {
-                                            console.error("Erro ao atualizar o documento: ", error);
-                                        });
-                                    } else {
-                                        console.log("Documento não encontrado!");
-                                    }
-                                }).catch(function(error) {
-                                    console.error("Erro ao ler o documento: ", error);
-                                });
 
                                 //fim pontos
                                 Swal.fire(
@@ -273,6 +255,9 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
                                     'Situação de Atividade Alterada',
                                     'success'
                                 )
+                                setTimeout(() => {
+                                    location.reload()
+                                }, 500);
                             })
                             .catch((error) => {
                                 // The document probably doesn't exist.
@@ -294,7 +279,7 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
             const button2 = document.createElement('button');
             button2.innerHTML = '<i class="far fa-clock"></i>'
-            button2.className = 'btnpendente'
+            button2.className = 'btnpendente waves-effect waves-light'
 
             button2.onclick = function() {
 
@@ -334,6 +319,9 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
                                     'Situação de Atividade Alterada',
                                     'success'
                                 )
+                                setTimeout(() => {
+                                    location.reload()
+                                }, 1000);
                             })
                             .catch((error) => {
                                 // The document probably doesn't exist.
@@ -480,62 +468,3 @@ db.collection(localStorage.getItem("empresa") + 'grupos').get().then((querySnaps
         table.appendChild(tableRow);
     });
 });
-
-
-
-function criarEixos(canvas, margem) {
-    var c = document.getElementById(canvas);
-    var ctx = c.getContext("2d");
-    var rightX = c.width - margem;
-    // y
-    ctx.moveTo(margem, margem);
-    ctx.lineTo(margem, rightX);
-    // setas do y
-    ctx.moveTo(margem, margem);
-    ctx.lineTo(margem + 5, margem + 5);
-    ctx.moveTo(margem, margem);
-    ctx.lineTo(margem - 5, margem + 5);
-    // x
-    ctx.moveTo(margem, rightX);
-    ctx.lineTo(rightX, rightX);
-    // setas x
-    ctx.moveTo(rightX, rightX);
-    ctx.lineTo(rightX - 5, rightX + 5);
-    ctx.moveTo(rightX, rightX);
-    ctx.lineTo(rightX - 5, rightX - 5);
-    // Define style and stroke lines.
-    ctx.strokeStyle = "#000";
-
-    ctx.stroke();
-}
-
-function criarBarra(canvas, xPos, yPos, largura, altura, cor) {
-    var c = document.getElementById(canvas);
-    var ctx = c.getContext("2d");
-    ctx.fillStyle = cor;
-    ctx.fillRect(xPos, yPos, largura, altura);
-}
-
-function criarGrafico(canvas, margem, barras, cor) {
-    var largura = document.getElementById(canvas).width;
-    var altura = document.getElementById(canvas).height - (margem * 2) - 5;
-    var qtd = barras.length;
-    var barra = (largura / (qtd * 1.5)) - 5;
-    var entre = (largura - (barra * qtd)) / (qtd + 3);
-    var total = 0;
-
-    for (i = 0; i < qtd; i++) {
-        if (total < barras[i]) {
-            total = barras[i];
-        }
-    }
-
-    for (i = 0; i < qtd; i++) {
-        criarBarra(canvas, ((barra + entre) * i) + (margem + entre), largura - margem - altura * (barras[i] / total), barra, altura * (barras[i] / total), cor);
-    }
-
-    criarEixos(canvas, margem);
-}
-
-var dados = new Array(localStorage.getItem("realizada"), localStorage.getItem("pendente"), localStorage.getItem("analise"));
-criarGrafico("grafico", 10, dados, "#7C5CFC");

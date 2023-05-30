@@ -30,7 +30,7 @@ tr>td {
 }
 
 :root {
-    --background-color: #1d1e22;
+    --background-color: #f3f6fd;
     --text-color: #fff;
     --panel-color: #333;
     --hover-color: #3e3e3e;
@@ -46,6 +46,10 @@ tr>td {
 canvas {
     border: none;
     outline: 0
+}
+
+body {
+    background-color: var(--background-color);
 }
 
 body,
@@ -290,7 +294,7 @@ canvas {
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     transition: opacity .5s ease-in-out;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 0;
     margin: 0 auto;
     width: 100%
@@ -529,6 +533,7 @@ canvas {
 }
 
 .transaction-box {
+    border-radius: 20px;
     margin-bottom: 0
 }
 
@@ -834,6 +839,7 @@ tr>td:first-child {
         width: 45%
     }
     .sidebarcss {
+        animation: anim 0.2;
         display: none
     }
     .contatos {
@@ -1012,7 +1018,7 @@ tr>td:first-child {
     top: -25px
 }
 
-.default-file-input {
+.default-fotoInput {
     opacity: 0
 }
 
@@ -1097,6 +1103,39 @@ tr>td:first-child {
     background-color: #4bb543
 }
 
+.wrapper {
+    padding: 40px;
+    text-align: center;
+}
+
+.carousel img {
+    width: 200px;
+}
+
+.wrapper h2 {
+    padding-bottom: 20px;
+}
+
+.wrapper #fotoInput {
+    display: none;
+}
+
+.wrapper label[for='fotoInput'] * {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.wrapper label[for='fotoInput'] span {
+    margin-left: 10px
+}
+
+.wrapper i.remove {
+    vertical-align: middle;
+    margin-left: 5px;
+    cursor: pointer;
+    display: none;
+}
+
 .upload-button {
     font-family: Montserrat;
     background-color: #7b2cbf;
@@ -1109,7 +1148,45 @@ tr>td:first-child {
     padding: 7.5px 50px
 }
 
+.icon {
+    padding-right: 10px;
+}
+
+.animacao {
+    animation: anim 2s;
+}
+
+@keyframes anim {
+    0% {
+        transition: 0.2;
+        margin-left: 0px;
+    }
+    100% {
+        transition: 0.2;
+        margin-left: -300px;
+    }
+}
+
 .box:hover {
     transition: opacity .5s ease-in-out !important;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+.card {
+    margin: 10px;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    background-color: #dbf6fd;
+    display: flex;
+    flex-direction: row;
+}
+
+.txt {
+    text-align: left;
+}
+
+#trfs {
+    display: flex;
+    flex-wrap: wrap;
 }
