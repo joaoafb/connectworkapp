@@ -14,6 +14,10 @@ function criargrupo() {
     location.href = 'cadgrupo.html'
 }
 
+function adminmsg() {
+    location.href = './adminmsg.html'
+}
+
 function user() {
     location.href = '../'
 }

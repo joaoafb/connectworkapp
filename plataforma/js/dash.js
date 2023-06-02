@@ -18,7 +18,22 @@ const db = firebase.firestore();
 document.querySelector(".user-name").innerHTML = 'ConnectWork | ' + localStorage.getItem("nome") + ' | ' + localStorage.getItem(("empresa"))
 
 
+db.collection(localStorage.getItem("empresa") + 'alertas').where("para", "==", localStorage.getItem("nome"))
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            Swal.fire({
 
+                icon: 'info',
+                title: '<strong>' + doc.data().titulo + ': </strong> ' + doc.data().mensagem,
+                showConfirmButton: false,
+                timer: 10000
+            })
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
 
 //Contar quantidade de usuarios
 

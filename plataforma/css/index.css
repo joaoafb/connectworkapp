@@ -293,7 +293,7 @@ canvas {
 .box {
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     transition: opacity .5s ease-in-out;
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 20px;
     padding: 0;
     margin: 0 auto;
@@ -748,20 +748,35 @@ tr>td:first-child {
 }
 
 .boxchat {
+    border-radius: 15px;
+    margin: 10px;
+    background-color: white;
     padding-left: 20px;
     align-items: center;
     width: 600px;
-    height: 600px
+    height: auto;
 }
 
 .full {
     width: 100%
 }
 
+.iconm {
+    text-align: left;
+    float: left;
+    zoom: 200%;
+    color: #7c5cfc;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: -220px;
+    display: none;
+    padding-bottom: -500px;
+}
+
 #message-list {
     width: 100%;
     margin: 0 auto;
-    height: 70vh;
+    height: 60vh;
     overflow-y: scroll
 }
 
@@ -1165,11 +1180,6 @@ tr>td:first-child {
         transition: 0.2;
         margin-left: -300px;
     }
-}
-
-.box:hover {
-    transition: opacity .5s ease-in-out !important;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .card {

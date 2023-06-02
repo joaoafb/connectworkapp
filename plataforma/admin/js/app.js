@@ -646,3 +646,175 @@ db.collection(localStorage.getItem("empresa") + 'grupos').get().then((querySnaps
         table.appendChild(tableRow);
     });
 });
+
+
+function criaralerta() {
+    db.collection(localStorage.getItem("empresa") + "usuarios").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const optionElement = document.createElement('option');
+
+            // Define o valor e o texto da option
+            optionElement.value = doc.data().nome
+            optionElement.text = doc.data().nome
+
+            // Adiciona a option ao select
+            document.querySelector("#usuarios").appendChild(optionElement);
+        });
+    });
+
+    function exibirModal() {
+        Swal.fire({
+            title: 'Deseja enviar um alerta?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, agora!',
+            cancelButtonText: 'Não',
+            reverseButtons: true,
+            focusCancel: true,
+            preConfirm: () => {
+                exibirFormulario();
+            }
+        });
+    }
+
+    function exibirFormulario() {
+        Swal.fire({
+            title: 'Enviar mensagem',
+            html: '<input id="titulo" class="swal2-input" placeholder="Título">' +
+                '<input list="usuarios" id="grupo" class="swal2-input" placeholder="Usuario">' +
+                '<textarea id="mensagem" class="swal2-textarea" placeholder="Mensagem"></textarea>',
+            showCancelButton: true,
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true,
+            focusConfirm: false,
+            preConfirm: () => {
+                const titulo = Swal.getPopup().querySelector('#titulo').value;
+                const grupo = Swal.getPopup().querySelector('#grupo').value;
+                const mensagem = Swal.getPopup().querySelector('#mensagem').value;
+
+                if (titulo.trim() === '' || mensagem.trim() === '') {
+                    Swal.showValidationMessage('Preencha todos os campos');
+                    return false;
+                }
+
+                // Aqui você pode enviar os dados para o Firebase
+                // Exemplo de envio para o console:
+                // Add a new document in collection "cities"
+                db.collection(localStorage.getItem('empresa') + 'alertas').add({
+                        por: localStorage.getItem("nome"),
+                        para: grupo,
+                        mensagem: mensagem,
+                        titulo: titulo
+                    })
+                    .then(() => {
+                        Swal.fire({
+
+                            icon: 'success',
+                            title: 'Alerta Criado',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+                console.log('Título:', titulo);
+                console.log('Grupo:', grupo);
+                console.log('Mensagem:', mensagem);
+            }
+        });
+    }
+
+    // Exemplo de chamada da função
+    exibirModal();
+
+}
+
+
+
+
+
+function gp() {
+    db.collection(localStorage.getItem("empresa") + "grupos").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const optionElement = document.createElement('option');
+
+            // Define o valor e o texto da option
+            optionElement.value = doc.data().nome
+            optionElement.text = doc.data().nome
+
+            // Adiciona a option ao select
+            document.querySelector("#grupos").appendChild(optionElement);
+        });
+    });
+
+    function exibirModal() {
+        Swal.fire({
+            title: 'Deseja enviar um alerta?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, agora!',
+            cancelButtonText: 'Não',
+            reverseButtons: true,
+            focusCancel: true,
+            preConfirm: () => {
+                exibirFormulariogp();
+            }
+        });
+    }
+
+    function exibirFormulariogp() {
+        Swal.fire({
+            title: 'Enviar mensagem',
+            html: '<input id="titulo" class="swal2-input" placeholder="Título">' +
+                '<input id="grupo" list="grupos" class="swal2-input" placeholder="Grupo">' +
+                '<textarea id="mensagem" class="swal2-textarea" placeholder="Mensagem"></textarea>',
+            showCancelButton: true,
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true,
+            focusConfirm: false,
+            preConfirm: () => {
+                const titulo = Swal.getPopup().querySelector('#titulo').value;
+                const grupo = Swal.getPopup().querySelector('#grupo').value;
+                const mensagem = Swal.getPopup().querySelector('#mensagem').value;
+
+                if (titulo.trim() === '' || mensagem.trim() === '') {
+                    Swal.showValidationMessage('Preencha todos os campos');
+                    return false;
+                }
+
+                // Aqui você pode enviar os dados para o Firebase
+                // Exemplo de envio para o console:
+                // Add a new document in collection "cities"
+                db.collection(localStorage.getItem('empresa') + 'alertas').add({
+                        por: localStorage.getItem("nome"),
+                        para: grupo,
+                        grupo: grupo,
+                        mensagem: mensagem,
+                        titulo: titulo
+                    })
+                    .then(() => {
+                        Swal.fire({
+
+                            icon: 'success',
+                            title: 'Alerta Criado',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+                console.log('Título:', titulo);
+                console.log('Grupo:', grupo);
+                console.log('Mensagem:', mensagem);
+            }
+        });
+    }
+
+    // Exemplo de chamada da função
+    exibirModal();
+
+}

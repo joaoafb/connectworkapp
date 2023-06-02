@@ -5,6 +5,8 @@ const database = firebase.database(),
     db = firebase.firestore();
 db.collection(localStorage.getItem("empresa") + "grupos" + localStorage.getItem("nome")).get().then(n => {
     n.forEach(n => {
+
+
         var i = document.createElement("li"),
             r, u, f, t, e;
         i.classList.add("collection-item", "avatar");
@@ -14,6 +16,7 @@ db.collection(localStorage.getItem("empresa") + "grupos" + localStorage.getItem(
         u = document.createElement("span");
         u.classList.add("title");
         u.textContent = n.data().nome;
+
         f = document.createElement("p");
         f.textContent = "";
         t = document.createElement("a");
@@ -22,12 +25,36 @@ db.collection(localStorage.getItem("empresa") + "grupos" + localStorage.getItem(
         e = document.createElement("i");
         e.classList.add("material-icons", "iconroxo");
         e.textContent = "chat";
+
+
+        //apagar gp excluido
+
+
+        function handleClick() {
+            document.querySelector(".contatos").style.width = '0px';
+            document.querySelector(".boxchat").style.transition = 'width 0.3s ease';
+            setTimeout(() => {
+                document.querySelector(".contatos").style.transition = 'width 0.3s ease'
+
+                document.querySelector(".boxchat").style.width = '70%';
+                document.querySelector(".iconm").style.display = 'block';
+
+            }, 100);
+            // Adicione aqui as ações que deseja realizar quando o botão for clicado
+        }
+
+        // Exemplo de uso: adicionando o evento de clique a um botão específico
+        const meuBotao = t
+        meuBotao.addEventListener("click", handleClick);
         t.onclick = function() {
-            document.querySelectorAll("h4").item(1).innerText = n.data().nome
+
+
+
+            document.querySelectorAll("h4").item(1).innerHTML = n.data().nome
             document.querySelector("#chat-form").style.display = "flex";
 
             document.querySelector("#message-list").innerHTML = "";
-            let t = firebase.database().ref(localStorage.getItem("empresa") + n.data().nome + "mensagens");
+            let t = firebase.database().ref(localStorage.getItem("empresa") + n.data().nome + "mensagens")
             t.on("value", n => {
                 let t = document.querySelector("#message-list");
                 t.innerHTML = "";
@@ -74,3 +101,37 @@ db.collection(localStorage.getItem("empresa") + "grupos" + localStorage.getItem(
         document.querySelector(".collection").appendChild(i)
     })
 });
+document.querySelector(".iconm").style.display = 'none';
+
+function backmsg() {
+    document.querySelector(".contatos").style.width = '350px'
+    document.querySelector(".iconm").style.display = 'none';
+    document.querySelector(".boxchat").style.width = '600px';
+    document.querySelector(".boxchat").style.transition = 'width 0.3s ease';
+}
+
+function excluir(nome) {
+    db.collection(localStorage.getItem("empresa") + 'gruposexcluidos').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            db.collection(localStorage.getItem("empresa") + 'grupos' + localStorage.getItem("nome")).where("nome", "==", nome)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        db.collection(localStorage.getItem("empresa") + 'grupos' + localStorage.getItem("nome")).doc(doc.id).delete().then(() => {
+
+                            location.reload()
+
+                        }).catch((error) => {
+                            console.error("Error removing document: ", error);
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+
+        });
+    });
+
+}
