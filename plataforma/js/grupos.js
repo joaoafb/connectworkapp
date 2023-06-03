@@ -110,28 +110,32 @@ function backmsg() {
     document.querySelector(".boxchat").style.transition = 'width 0.3s ease';
 }
 
-function excluir(nome) {
+function excluirgp() {
+
     db.collection(localStorage.getItem("empresa") + 'gruposexcluidos').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+            const grupoExcluido = doc.data().name;
 
-            db.collection(localStorage.getItem("empresa") + 'grupos' + localStorage.getItem("nome")).where("nome", "==", nome)
+
+
+            db.collection(localStorage.getItem("empresa") + 'grupos' + localStorage.getItem("nome")).where("nome", "==", grupoExcluido.nome)
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
+
                         db.collection(localStorage.getItem("empresa") + 'grupos' + localStorage.getItem("nome")).doc(doc.id).delete().then(() => {
+                            console.log(`Grupo ${grupoExcluido} removido do usuário.`);
 
-                            location.reload()
+                            apagargp(doc.data().nome)
 
-                        }).catch((error) => {
-                            console.error("Error removing document: ", error);
+
                         });
-                    });
-                })
-                .catch((error) => {
-                    console.log("Error getting documents: ", error);
-                });
+                    })
 
+                });
         });
     });
 
+
 }
+excluirgp()

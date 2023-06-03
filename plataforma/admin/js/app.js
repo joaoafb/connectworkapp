@@ -608,6 +608,18 @@ db.collection(localStorage.getItem("empresa") + 'grupos').get().then((querySnaps
 
                     const collectionRef = db.collection(localStorage.getItem("empresa") + 'grupos');
 
+                    // Add a new document in collection "cities"
+                    db.collection(localStorage.getItem("empresa") + 'gruposexcluidos').add({
+                            name: userData,
+
+                        })
+                        .then(() => {
+                            console.log("Document successfully written!");
+                        })
+                        .catch((error) => {
+                            console.error("Error writing document: ", error);
+                        });
+
 
 
                     collectionRef.where('nome', '==', userData.nome).get()
