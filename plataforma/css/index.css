@@ -13,15 +13,8 @@ tr>td {
 .btnp,
 .notification,
 .side-nav__item,
-.waves-effect {
-    cursor: pointer
-}
 
-.notification,
-.spending-box,
-.waves-effect {
-    position: relative
-}
+
 
 * {
     margin: 0;
@@ -47,11 +40,29 @@ canvas {
     border: none;
     outline: 0
 }
-
+.dark{
+    background-color: #1f2937;
+}
 body {
     background-color: var(--background-color);
 }
+body {
+    background-image: linear-gradient(45deg, #7c5cfc, rgb(65, 134, 224), rgb(66, 179, 135));
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+  }
 
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 body,
 html {
     height: 100%
@@ -62,9 +73,50 @@ body {
     height: 100vh
 }
 
-.icon {
-    padding-right: 5px
-}
+.profile-card {
+    background-color: #7c5cfc1c;
+    display: flex;
+    align-items: center;
+    border-radius: 7px;
+    margin-top:20px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .profile-card:hover{
+    cursor: pointer;
+    background-color:#7c5cfc;
+    color: white !important;
+    transition: .2s background-color;
+  }
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    margin-left: 10px;
+  }
+  
+  .profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .profile-message {
+    font-size: 14px;
+    color: #666;
+  }
+  
 
 canvas {
     color: #7c5cfc
@@ -95,8 +147,11 @@ canvas {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    background-color: white;
+    border-radius: 20px;
     justify-content: space-between;
-    border-right: 1px solid #f3f5f7;
+    margin-left: 10px;
+    margin-top: 10px;
     padding: 0 16px;
     overflow: auto
 }
@@ -120,7 +175,7 @@ canvas {
 .side-nav__header {
     font-size: 14px;
     line-height: 21px;
-    color: #90a3bf;
+    color: black;
     padding-bottom: 10px;
     display: inline-block
 }
@@ -138,28 +193,14 @@ canvas {
 .sidebarcss ul li {
     display: flex;
     flex-direction: row;
+    cursor: pointer;
     justify-content: start;
     align-items: center
 }
+.sidebarcss ul li:hover{
+    background-color: #6d46e2;
+  }
 
-.waves-effect {
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    -webkit-transition: .3s ease-out;
-    transition: .3s ease-out
-}
-
-.waves-light {
-    background-color: #fff;
-    color: #000
-}
 
 .side-nav__item {
     list-style: none;
@@ -178,7 +219,14 @@ canvas {
 }
 
 .side-nav__item.last-item {
-    margin-bottom: 32px
+    margin-bottom: 32px;
+    background-color:#fc5c5c32;
+    color: #fc5c5c;
+    
+}
+.side-nav__item.last-item:hover{
+    background-color: #fc5c5c;
+    color: white;
 }
 
 .side-nav__item:not(:last-child) {
@@ -219,10 +267,14 @@ canvas {
     padding: 11px 0 11px 24px;
     max-width: 492px;
     width: 100%;
-    border: 1px solid #c3d4e9;
-    border-radius: 70px;
+border: none;
+outline: none;
+   
+    border-radius: 10px;
+    background-color: transparent;
+    outline: none;
     gap: 26px;
-    background: #fff;
+
     opacity: .8
 }
 
@@ -245,9 +297,9 @@ canvas {
 }
 
 .user-name {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
+    color: white;
+    font-weight: 500;
+    font-size: 22px;
     margin: 0 37px 0 12px
 }
 
@@ -275,9 +327,14 @@ canvas {
     display: flex;
     gap: 24px;
     padding: 32px;
-    background-color: #f3f5f7
+    
 }
-
+.desfoque{
+    background-color: #f5f5f5;
+    filter: blur(5px) !important;
+    transition: filter 0.3s ease;
+    opacity: 0;
+}
 .bottom-container__left {
     width: 70%
 }
@@ -289,19 +346,62 @@ canvas {
 .spending-statistics {
     max-height: 338px
 }
-
 .box {
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-    transition: opacity .5s ease-in-out;
-    background-color: transparent;
-    border-radius: 20px;
-    padding: 0;
-    margin: 0 auto;
-    width: 100%
-}
-
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+  }
+  
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-container {
+    margin-bottom: 12px;
+  }
+  
+  .section-header {
+    font-size: 18px;
+    font-weight: bold;
+    
+  }
+  .transaction-box .section-header{
+    color: #5a5a5a;
+  }
+  
+  
+  .icon {
+    margin-right: 8px;
+  }
+  
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    
+  }
+ 
+  .fa-user-friends {
+    margin-left: 8px;
+  }
+  .box button{
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+  
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
 .contatos {
-    margin: 0;
+    margin: 15px;
     float: left;
     width: 350px
 }
@@ -310,6 +410,42 @@ canvas {
 .swal-modal-content {
     width: 100%!important;
     height: 100%!important
+}
+#chat{
+    display: none;
+}
+#mostrarusuarios .profile-card{
+    margin: 10px;
+    color: white;
+    background-color: #7c5cfc;
+}
+#mostrarusuarios .profile-message{
+    color: rgb(212, 212, 212);
+}
+
+.btn-danger{
+    background-color: #fc5c5c;
+    color: white;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color .3s;
+}
+.btn-danger:hover{
+    background-color: #ff4646;
+    transition: background-color .3s;
+}
+.btn-success{
+    background-color: #219d54;
+    color: white;
+    cursor: pointer;
+    transition: background-color .3s;
+    font-size: 10pt;
+}
+.btn-success:hover{
+    transition: 0.2;
+    transition: background-color .3s;
+    background-color: #18ad57;
 }
 
 .roxo {
@@ -457,10 +593,13 @@ canvas {
 }
 
 .section-header {
-    line-height: 24px;
-    font-size: 16px
+    font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
-
+tr:nth-child(even) td {
+    color: rgba(0, 0, 0, 0.802);
+  }
 .header-container span {
     line-height: 21px;
     font-size: 14px
@@ -490,8 +629,19 @@ canvas {
 }
 
 .price {
+    padding:5px;
+    font-size: 12pt;
+    color: #5a5a5a;
     line-height: 150%;
     margin-bottom: 14px
+    
+}
+.iconmenu{
+    zoom: 200% !important;
+
+    text-align: center !important;
+    color: white !important;
+    fill: white;
 }
 
 .price-currency {
@@ -533,7 +683,7 @@ canvas {
 }
 
 .transaction-box {
-    border-radius: 20px;
+ background-color: white;
     margin-bottom: 0
 }
 
@@ -581,7 +731,9 @@ tr>td:first-child {
 .btn {
     padding: 16px 20px;
     display: flex;
+    width: 100px !important;
     align-items: center;
+    margin: 10px;
     justify-content: center;
     gap: 15px;
     border: none;
@@ -639,6 +791,7 @@ tr>td:first-child {
 
 .pie-chart__labels-item {
     font-weight: 600;
+
     font-size: 14px;
     line-height: 150%
 }
@@ -666,7 +819,7 @@ tr>td:first-child {
 .btnexluir,
 .btnrealizada {
     border: none;
-    width: 90px;
+    width: 50px;
     height: 30px;
     outline: 0;
     color: #fff;
@@ -676,11 +829,11 @@ tr>td:first-child {
 }
 
 .first {
-    background: #eb7ca6
+    background: #1d8349
 }
 
 .second {
-    background: #ffacc8
+    background: #4459c7
 }
 
 .third {
@@ -699,6 +852,13 @@ tr>td:first-child {
     background: #a1a9fe
 }
 
+.sidebaroff {
+    animation: anim 0.2;
+    display: none
+}
+.openmenu{
+    opacity: 0;
+}
 .btnexluir {
     background-color: #e74c3c;
     border-radius: 5px
@@ -709,7 +869,7 @@ tr>td:first-child {
 }
 
 .btnrealizada {
-    background-color: #27ae60;
+    background-color: #219653;
     border-radius: 5px
 }
 
@@ -719,10 +879,10 @@ tr>td:first-child {
 
 .btnpendente {
     cursor: pointer;
-    width: 90px;
+    width: 50px;
     height: 30px;
     outline: 0;
-    background-color: #3498db;
+    background-color: #5c7cfc;
     border: none;
     color: #fff;
     margin: 5px;
@@ -746,14 +906,21 @@ tr>td:first-child {
     display: none;
     padding-right: 40px
 }
-
+#grupos{
+    display: flex;
+    flex-direction: column;
+    
+}
+#grupo ul {
+    background-color: #7c5cfc;
+}
 .boxchat {
     border-radius: 15px;
     margin: 10px;
     background-color: white;
-    padding-left: 20px;
     align-items: center;
-    width: 600px;
+    width: 60%;
+    padding: 10px;
     height: auto;
 }
 
@@ -830,21 +997,42 @@ tr>td:first-child {
     padding: 10px;
     min-height: 54px!important;
     display: flex;
-    align-items: center
+    align-items: center;
+    background-color: #7c5cfcdb;
+    color: white;
 }
-
+.collection .collection-item i{
+    margin: 15px;
+    background-color: transparent !important;
+    padding: 10px;
+    border-radius: 50%;
+}
+.btn-floating{
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: .2s opacity;
+    border-radius: 50%;
+}
+.btn-floating:hover{
+    opacity: 90%;
+    transition: .2s opacity;
+}
 @media (max-width:1300px) {
     table tr {
         margin-bottom: 10px
     }
     .bottom-container {
         flex-direction: column;
-        height: auto
+        height: auto;
+        
     }
     .bottom-container__left,
     .bottom-container__right,
     .boxchat {
-        width: 100%
+        margin: 0 auto;
+        width: 90%
     }
     #chat-form {
         padding: 10px;
@@ -853,13 +1041,12 @@ tr>td:first-child {
     .btn {
         width: 45%
     }
-    .sidebarcss {
-        animation: anim 0.2;
-        display: none
-    }
+ 
+      
     .contatos {
-        width: 100%;
-        margin: 0 auto
+     
+        width: 90%;
+      
     }
     .collection .collection-item {
         margin: 0;
@@ -947,10 +1134,11 @@ tr>td:first-child {
         left: 0
     }
     tr>td {
-        text-align: end
+        text-align: start
     }
+
     tr>td:first-child {
-        justify-content: end
+        justify-content: start
     }
     .box p,
     .total-box p {
@@ -959,12 +1147,15 @@ tr>td:first-child {
     .pie-chart__labels-item {
         font-size: 16px
     }
+    .sidebarcss{
+       width: 85vw;
+    
+        margin-top: 80px;
+    }
 }
 
 @media(max-width:600px) {
-    .sidebarcss {
-        display: none
-    }
+  
     .year-selector {
         gap: 12px
     }
@@ -1163,9 +1354,6 @@ tr>td:first-child {
     padding: 7.5px 50px
 }
 
-.icon {
-    padding-right: 10px;
-}
 
 .animacao {
     animation: anim 2s;
@@ -1200,3 +1388,4 @@ tr>td:first-child {
     display: flex;
     flex-wrap: wrap;
 }
+

@@ -1,12 +1,20 @@
-function scrollToEnd(n) { n.scrollTo({ top: n.scrollHeight, behavior: "smooth" }) }
-const firebaseConfig = { apiKey: "AIzaSyBKa-Bs_f_Jg80zzeRlMLzrTH_0oWP3Jdo", authDomain: "connectwork-c13b2.firebaseapp.com", projectId: "connectwork-c13b2", storageBucket: "connectwork-c13b2.appspot.com", messagingSenderId: "407759011685", appId: "1:407759011685:web:625201a9a6e0b35aba6b8c", measurementId: "G-TC7VG0QJVX" };
+function scrollToEnd(n) {
+    n.scrollTo({ top: n.scrollHeight, behavior: "smooth" });
+}
+const firebaseConfig = {
+    apiKey: "AIzaSyBKa-Bs_f_Jg80zzeRlMLzrTH_0oWP3Jdo",
+    authDomain: "connectwork-c13b2.firebaseapp.com",
+    projectId: "connectwork-c13b2",
+    storageBucket: "connectwork-c13b2.appspot.com",
+    messagingSenderId: "407759011685",
+    appId: "1:407759011685:web:625201a9a6e0b35aba6b8c",
+    measurementId: "G-TC7VG0QJVX"
+};
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database(),
     db = firebase.firestore();
 db.collection(localStorage.getItem("empresa") + "grupos" + localStorage.getItem("nome")).get().then(n => {
     n.forEach(n => {
-
-
         var i = document.createElement("li"),
             r, u, f, t, e;
         i.classList.add("collection-item", "avatar");

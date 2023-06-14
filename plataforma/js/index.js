@@ -1,4 +1,5 @@
-// AUTH FIREBASE
+
+    // AUTH FIREBASE
 
 const firebaseConfig = {
     apiKey: "AIzaSyBKa-Bs_f_Jg80zzeRlMLzrTH_0oWP3Jdo",

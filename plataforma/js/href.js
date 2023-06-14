@@ -18,13 +18,6 @@ function pegarempresa() {
     setTimeout(() => { "null | ConnectWork" == document.title && location.reload() }, 1e3)
 }
 
-function home() { setTimeout(() => { location.href = "dash.html" }, 500) }
-
-function dash() { setTimeout(() => { location.href = "index.html" }, 500) }
-
-function grupos() { setTimeout(() => { location.href = "grupos.html" }, 500) }
-
-function usuario() { setTimeout(() => { location.href = "usuario.html" }, 500) }
 
 function admin() { db.collection("admin").where("email", "==", localStorage.getItem("email")).get().then(n => { n.forEach(() => { location.href = "./admin" }) }).catch(n => { console.log("Error getting documents: ", n) }) }
 

@@ -15,8 +15,8 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // FIM AUTH FIREBASE
-document.querySelector(".user-name").innerHTML = 'ConnectWork | ' + localStorage.getItem("nome") + ' | ' + localStorage.getItem(("empresa"))
-
+document.querySelector(".profile-name").innerHTML = localStorage.getItem("nome")
+document.querySelector(".profile-message").innerHTML = localStorage.getItem("empresa")
 
 db.collection(localStorage.getItem("empresa") + 'alertas').where("para", "==", localStorage.getItem("nome"))
     .get()
@@ -382,29 +382,6 @@ db.collection(localStorage.getItem("empresa") + 'tarefas').where("email", "==", 
 
 
 
-const truser = document.createElement('tr');
-
-const th1user = document.createElement('th');
-th1user.innerText = 'Usuario';
-
-const th5user = document.createElement('th');
-th5user.innerText = 'Recado';
-const th2user = document.createElement('th');
-th2user.innerText = 'Cargo';
-
-
-const th6 = document.createElement('th');
-th6.innerText = 'Nome';
-truser.appendChild(th6);
-truser.appendChild(th1user);
-truser.appendChild(th5user);
-truser.appendChild(th2user);
-
-
-// Adicione a linha à tabela existente
-const tableuser = document.querySelector('#mostrarusuarios'); // Selecione a tabela adequada
-tableuser.appendChild(truser);
-
 //mostrar usuarios
 
 
@@ -413,34 +390,52 @@ db.collection(localStorage.getItem("empresa") + 'usuarios').get().then((querySna
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
 
-        const tr = document.createElement('tr');
+      
         const data = doc.data()
 
 
-        const td1 = document.createElement('td');
-        td1.innerText = data.nome
-        const td5 = document.createElement('td');
-        td5.innerText = data.usuario
+      
 
-        const td2 = document.createElement('td');
-        td2.innerText = data.descricao
-        const td3 = document.createElement('td');
-        td3.innerText = data.cargo
+// Criação do elemento div com a classe "profile-card"
+const profileCard = document.createElement('div');
+profileCard.className = 'profile-card';
 
+// Criação do elemento div com a classe "profile-image"
+const profileImage = document.createElement('div');
+profileImage.className = 'profile-image';
 
+// Criação do elemento img com o atributo src e alt definidos
+const image = document.createElement('img');
+image.src = data.img
+image.alt = 'Foto de Perfil';
 
+// Adiciona a imagem ao elemento "profile-image"
+profileImage.appendChild(image);
 
+// Criação do elemento div com a classe "profile-info"
+const profileInfo = document.createElement('div');
+profileInfo.className = 'profile-info';
 
-        tr.appendChild(td1);
-        tr.appendChild(td5);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
+// Criação do elemento h3 com a classe "profile-name"
+const name = document.createElement('h3');
+name.className = 'profile-name';
+name.textContent = data.nome
 
+// Criação do elemento p com a classe "profile-message"
+const message = document.createElement('p');
+message.className = 'profile-message';
+message.textContent = data.descricao
 
+// Adiciona o nome e a mensagem ao elemento "profile-info"
+profileInfo.appendChild(name);
+profileInfo.appendChild(message);
 
-        // Adicione a linha à tabela existente
-        const table = document.querySelector('#mostrarusuarios'); // Selecione a tabela adequada
-        table.appendChild(tr);
+// Adiciona "profile-image" e "profile-info" ao "profile-card"
+profileCard.appendChild(profileImage);
+profileCard.appendChild(profileInfo);
+
+// Adiciona o "profile-card" ao elemento pai desejado (por exemplo, o body)
+document.querySelector("#mostrarusuarios").appendChild(profileCard);
 
     });
 });
